@@ -2,7 +2,7 @@
 #enconding: utf-8
 
 @api
-Funcionalidade: Usuarios - POST /usuarios
+Funcionalidade: Usuarios - POST usuarios
 
   Cenario: Cadastrar usuario com sucesso
     Dado que envio uma requisição "POST" para o endpoint "/usuarios" com os dados:

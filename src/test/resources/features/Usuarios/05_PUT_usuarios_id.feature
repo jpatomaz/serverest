@@ -1,7 +1,7 @@
 #language: pt
 #enconding: utf-8
 
-@apiFuncionalidade: Usuarios - PUT /usuarios/id
+@apiFuncionalidade: Usuarios - PUT usuarios_id
 
   Cenario: Alterar usuario com sucesso
     Dado que envio uma requisição "PUT" para o endpoint "/usuarios/5JqPK6Jer22TnTAZ" com os dados:

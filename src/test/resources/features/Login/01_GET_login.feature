@@ -2,7 +2,7 @@
 #enconding: utf-8
 
 @api
-Funcionalidade: Login - GET /login
+Funcionalidade: Login - GET login
 
   Cenario: Efetuar Login com sucesso
     Dado que envio uma requisição "POST" para o endpoint "/login" com os dados:

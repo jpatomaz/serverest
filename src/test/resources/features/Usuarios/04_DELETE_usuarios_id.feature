@@ -2,7 +2,7 @@
 #enconding: utf-8
 
 @api
-Funcionalidade: Usuarios - DELETE /usuarios/id
+Funcionalidade: Usuarios - DELETE usuarios_id
 
   #Implementar a atualização de um id existente ao invés de deixar fixo
   Cenario: Efetuar a exclusão de usuário com sucesso

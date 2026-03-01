@@ -2,7 +2,7 @@
 #enconding: utf-8
 
 @api
-Funcionalidade: Usuarios - GET /users
+Funcionalidade: Usuarios - GET usuarios
 
   Cenario: Efetuar Listagem de usuários com sucesso
     Dado que envio uma requisição "GET" para o endpoint "/usuarios"

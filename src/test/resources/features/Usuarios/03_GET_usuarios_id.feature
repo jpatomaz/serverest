@@ -2,7 +2,7 @@
 #enconding: utf-8
 
 @api
-Funcionalidade: Usuarios - GET /usuarios/id
+Funcionalidade: Usuarios - GET usuarios_id
 
   Cenario: Efetuar consulta de usuário por ID com sucesso
     Dado que envio uma requisição "GET" para o endpoint "/usuarios/0uxuPY0cbmQhpEz1"
