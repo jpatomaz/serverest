@@ -191,8 +191,7 @@
                 <version>${maven.failsafe.plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>**/*.java</include>
-                        <include>**/*.Test</include>
+                        <include>**/RunTest.java</include>
                     </includes>
                 </configuration>
                 <executions>
