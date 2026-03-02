@@ -50,7 +50,7 @@ public class RequisitionApi extends Endpoints {
         request.header("Content-Type", "application/json");
 
         //Essa Authorization é gerado na Classe GeraToken e preenchida no Hook BeforeAll
-        request.header("Authorization", DataBase.getCodeAuthorization());
+//        request.header("Authorization", DataBase.getCodeAuthorization());
         return enviaRequisicao(requisicao, endPoint, request, response);
     }
 
@@ -63,7 +63,7 @@ public class RequisitionApi extends Endpoints {
         request.body(body);
 
         //Essa Authorization é gerado na Classe GeraToken e preenchida no Hook BeforeAll
-        request.header("Authorization", DataBase.getCodeAuthorization());
+//        request.header("Authorization", DataBase.getCodeAuthorization());
 
         return enviaRequisicao(requisicao, endPoint, request, response);
     }
@@ -96,7 +96,7 @@ public class RequisitionApi extends Endpoints {
         request.header("Content-Type", "application/json");
         request.params(parametros);
         //Essa Authorization é gerado na Classe GeraToken e preenchida no Hook BeforeAll
-        request.header("Authorization", DataBase.getCodeAuthorization());
+//        request.header("Authorization", DataBase.getCodeAuthorization());
 
         return enviaRequisicao(requisicao, endPoint, request, response);
     }
