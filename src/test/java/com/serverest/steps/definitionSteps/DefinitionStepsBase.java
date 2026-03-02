@@ -1,6 +1,7 @@
 package com.serverest.steps.definitionSteps;
 
 import com.github.javafaker.Faker;
+import com.serverest.controll.Setup;
 import com.serverest.database.DataBase;
 import com.serverest.steps.requisitions.RequisitionApi;
 import io.cucumber.java.DataTableType;
@@ -18,12 +19,28 @@ public class DefinitionStepsBase {
     @DataTableType(replaceWithEmptyString = "[vazio]")
     public Object objectType(String cell) {
 
-        if (cell.equals("[Gera Nome]")) {
+        if (cell.equalsIgnoreCase("[Gera Nome]")) {
             return Faker.instance().name().fullName();
         }
 
-        if (cell.equals("[Gera Email]")) {
+        if (cell.equalsIgnoreCase("[Gera Email]")) {
             return Faker.instance().internet().emailAddress();
+        }
+
+        if (cell.equalsIgnoreCase("[DataUsuario.Nome]")) {
+            return Setup.nome;
+        }
+
+        if (cell.equalsIgnoreCase("[DataUsuario.Email]")) {
+            return Setup.email;
+        }
+
+        if (cell.equalsIgnoreCase("[DataUsuario.Password]")) {
+            return Setup.password;
+        }
+
+        if (cell.equalsIgnoreCase("[DataUsuario.Id]")) {
+            return Setup.id;
         }
 
         return cell;
@@ -52,7 +69,7 @@ public class DefinitionStepsBase {
     }
 
     @Dado("que envio uma requisição {string} para o endpoint {string} com os parâmetros:")
-    public void enviaMetodoComParametro(String requisicao, String endPoint, Map<String, String> parametros) {
+    public void enviaMetodoComParametro(String requisicao, String endPoint, Map<String, Object> parametros) {
         DataBase.setResponse(RequisitionApi.enviaMetodoComParametros(requisicao, endPoint, parametros));
     }
 
@@ -62,7 +79,7 @@ public class DefinitionStepsBase {
     }
 
     @E("a resposta deve incluir os seguintes valores:")
-    public void aRespostaDeveIncluirOsSeguintesValores(Map<String, String> campos) {
+    public void aRespostaDeveIncluirOsSeguintesValores(Map<String, Object> campos) {
         RequisitionApi.validaValoresResposta(campos);
     }
 }

@@ -6,8 +6,8 @@ Funcionalidade: Login - GET login
 
   Cenario: Efetuar Login com sucesso
     Dado que envio uma requisição "POST" para o endpoint "/login" com os dados:
-      | email    | fulano@qa.com |
-      | password | teste         |
+      | email    | [DataUsuario.Email] |
+      | password | [DataUsuario.Password]         |
     Entao devera retornar o status 200
     E a resposta deve incluir os seguintes valores:
       | message | Login realizado com sucesso |

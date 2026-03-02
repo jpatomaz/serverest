@@ -1,5 +1,6 @@
 package com.serverest.util;
 
+import com.serverest.controll.Setup;
 import com.serverest.database.DataBase;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -25,8 +26,8 @@ public class GeraToken {
 //        request.header("Authorization", authorization);
 
         // Usando body para application/x-www-form-urlencoded
-        String requestBody = "{\"email\":\"fulano@qa.com\", \"password\":\"teste\"}";
-
+        String requestBody = "{\"email\":\"" + Setup.email + "\", \"password\":\"teste\"}";
+        System.out.println("adfsasad" + requestBody);
         request.body(requestBody);
 
 

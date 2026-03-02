@@ -1,12 +1,14 @@
 package com.serverest.steps.requisitions;
 
 import com.github.javafaker.Faker;
+import com.serverest.controll.Setup;
 import com.serverest.database.DataBase;
 import com.serverest.controll.Endpoints;
 import com.serverest.util.MapToHashMap;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,10 @@ public class RequisitionApi extends Endpoints {
         return response;
     }
     public static Response requisicaoSemParametro(String requisicao, String endPoint) {
+        if (endPoint.contains("[DataUsuario.Id]")) {
+            endPoint = endPoint.replace("[DataUsuario.Id]", Setup.id);
+        }
+
         Response response = null;
         RestAssured.baseURI = uri;
         request = RestAssured.given().log().all();
@@ -63,6 +69,10 @@ public class RequisitionApi extends Endpoints {
     }
 
     public static Response enviaMetodoComOsDados(String requisicao, String endPoint, Map<String, Object> data) {
+        if (endPoint.contains("[DataUsuario.Id]")) {
+            endPoint = endPoint.replace("[DataUsuario.Id]", Setup.id);
+        }
+
         Response response = null;
         HashMap<String, Object> body = MapToHashMap.mapToHashMap(data);
 
@@ -72,13 +82,13 @@ public class RequisitionApi extends Endpoints {
         request.header("Content-Type", "application/json");
         request.body(body);
         //Essa Authorization é gerado na Classe GeraToken e preenchida no Hook BeforeAll
-        request.header("Authorization", DataBase.getCodeAuthorization());
+//        request.header("Authorization", DataBase.getCodeAuthorization());
 
         return enviaRequisicao(requisicao, endPoint, request, response);
     }
 
 
-    public static Response enviaMetodoComParametros(String requisicao, String endPoint, Map<String, String> parametros) {
+    public static Response enviaMetodoComParametros(String requisicao, String endPoint, Map<String, Object> parametros) {
         RestAssured.baseURI = uri;
         RequestSpecification request = RestAssured.given().log().all();
         Response response = null;
@@ -91,19 +101,19 @@ public class RequisitionApi extends Endpoints {
         return enviaRequisicao(requisicao, endPoint, request, response);
     }
 
-    public static void validaValoresResposta(Map<String, String> campos) {
+    public static void validaValoresResposta(@UnknownNullability Map<String, Object> campos) {
         Response resposta = DataBase.getResponse();
 
-        for (Map.Entry<String, String> entry : campos.entrySet()) {
+        for (Map.Entry<String, Object> entry : campos.entrySet()) {
             String chave = entry.getKey();
-            String valorEsperado = entry.getValue();
+            String valorEsperado = entry.getValue().toString();
             Object valorResposta = resposta.path(chave);
 
             assertTrue("Campo: " + entry.getKey() + " não encontrado na resposta.", DataBase.getResponse().asString().contains(entry.getKey()));
 
             System.out.println("Apresentado: " + valorResposta.toString());
             System.out.println("Esperado: " + entry.getValue());
-            assertTrue(valorResposta.toString().contains(entry.getValue()));
+            assertTrue(valorResposta.toString().contains((CharSequence) entry.getValue()));
         }
     }
 
