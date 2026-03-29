@@ -3,7 +3,6 @@ package com.serverest.controll;
 import com.github.javafaker.Faker;
 import com.serverest.database.DataBase;
 import com.serverest.steps.requisitions.RequisitionApi;
-import com.serverest.util.MapToHashMap;
 
 import java.util.HashMap;
 
@@ -26,13 +25,5 @@ public class Setup {
         Setup.id = DataBase.getResponse().path("_id");
         System.out.println("StatusCode: " + DataBase.getResponse().getStatusCode());
         System.out.println("Response: " + DataBase.getResponse().asString());
-
-        System.out.println("sdfsdsdfdsfsdf" + DataBase.getResponse().path("_id"));
-        System.out.println("dsafsdfdsfds" + Setup.id);
-    }
-
-    public static void main(String[] args) {
-        cadastraFuncionario();
-        System.out.println(Setup.nome + Setup.email);
     }
 }
